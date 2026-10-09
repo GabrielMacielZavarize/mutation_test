@@ -98,4 +98,56 @@ describe("utilitarios", () => {
     expect(numero).toBeGreaterThanOrEqual(0);
     expect(numero).toBeLessThan(10);
   });
+
+  test("deve usar Math.random multiplicado pelo limite", () => {
+    // Arrange
+    const util = new Utilitarios();
+    const random = jest.spyOn(Math, "random").mockReturnValue(0.55);
+
+    // Act
+    const comLimite = util.gerarNumeroAleatorio(10);
+    const limitePadrao = util.gerarNumeroAleatorio();
+
+    // Assert
+    expect(comLimite).toBe(5);
+    expect(limitePadrao).toBe(55);
+    random.mockRestore();
+  });
+
+  test("ehNumero deve recusar valores que nao sao do tipo number", () => {
+    // Arrange
+    const util = new Utilitarios();
+
+    // Act
+    const texto = util.ehNumero("10");
+    const nulo = util.ehNumero(null);
+
+    // Assert
+    expect(texto).toBe(false);
+    expect(nulo).toBe(false);
+  });
+
+  test("ehPalindromo deve retornar false para palavras que nao sao palindromos", () => {
+    // Arrange
+    const util = new Utilitarios();
+
+    // Act
+    const resultado = util.ehPalindromo("JavaScript");
+    const comPontuacao = util.ehPalindromo("Ola, mundo!");
+
+    // Assert
+    expect(resultado).toBe(false);
+    expect(comPontuacao).toBe(false);
+  });
+
+  test("ehPalindromo deve ignorar caracteres fora de a-z e 0-9 como o ß", () => {
+    // Arrange
+    const util = new Utilitarios();
+
+    // Act
+    const resultado = util.ehPalindromo("Arara ß");
+
+    // Assert
+    expect(resultado).toBe(true);
+  });
 });

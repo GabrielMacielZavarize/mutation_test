@@ -97,6 +97,20 @@ describe("Streaming", () => {
       expect(familia.menu.icone).toBe("escuro-menu");
     });
 
+    test("deve aceitar os temas claro e contraste", () => {
+      // Arrange
+      const temas = ["claro", "contraste"];
+
+      // Act
+      const familias = temas.map((tema) => streaming.criarFamiliaTema(tema));
+
+      // Assert
+      expect(familias[0].player.icone).toBe("claro-player");
+      expect(familias[0].menu.icone).toBe("claro-menu");
+      expect(familias[1].player.icone).toBe("contraste-player");
+      expect(familias[1].menu.icone).toBe("contraste-menu");
+    });
+
     test("deve lancar erro para tema invalido", () => {
       // Arrange
       const tema = "neon";
@@ -412,6 +426,14 @@ describe("Streaming", () => {
       expect(resultado).toBe("aprovado");
     });
 
+    test("deve aprovar quando a lista de handlers nao e informada", () => {
+      // Arrange & Act
+      const resultado = streaming.moderarComentario("oi");
+
+      // Assert
+      expect(resultado).toBe("aprovado");
+    });
+
     test("deve retornar decisao tomada no meio da cadeia", () => {
       // Arrange
       const handler1 = () => null;
@@ -482,6 +504,17 @@ describe("Streaming", () => {
       expect(iterador.temProximo()).toBe(false);
     });
 
+    test("deve usar historico vazio quando nenhum historico e informado", () => {
+      // Arrange
+      const iterador = streaming.criarIteradorHistorico();
+
+      // Act & Assert
+      expect(iterador.temProximo()).toBe(false);
+      expect(() => iterador.proximo()).toThrow(
+        "Não há mais itens no histórico",
+      );
+    });
+
     test("deve lancar erro ao chamar proximo alem do fim", () => {
       // Arrange
       const iterador = streaming.criarIteradorHistorico(["ep1"]);
@@ -520,6 +553,14 @@ describe("Streaming", () => {
         "Oi",
         [],
       );
+
+      // Assert
+      expect(notificacoes).toEqual([]);
+    });
+
+    test("deve retornar lista vazia quando a lista de perfis nao e informada", () => {
+      // Arrange & Act
+      const notificacoes = streaming.mediarNotificacaoEntrePerfis("Joao", "Oi");
 
       // Assert
       expect(notificacoes).toEqual([]);
@@ -597,6 +638,9 @@ describe("Streaming", () => {
       expect(streaming.transicionarEstado("reproduzindo", "finalizar")).toBe(
         "finalizado",
       );
+      expect(streaming.transicionarEstado("pausado", "finalizar")).toBe(
+        "finalizado",
+      );
     });
 
     test("deve lancar erro para transicao invalida", () => {
@@ -604,6 +648,13 @@ describe("Streaming", () => {
       expect(() =>
         streaming.transicionarEstado("finalizado", "play"),
       ).toThrow("Transição inválida: play a partir de finalizado");
+    });
+
+    test("deve lancar erro de transicao quando o estado atual nao existe", () => {
+      // Arrange & Act & Assert
+      expect(() =>
+        streaming.transicionarEstado("desconhecido", "play"),
+      ).toThrow("Transição inválida: play a partir de desconhecido");
     });
   });
 

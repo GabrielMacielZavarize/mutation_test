@@ -209,4 +209,133 @@ describe("conta bancaria", () => {
     expect(conta.obterLimite()).toBe(0);
     expect(conta.obterStatus()).toBe("ativa");
   });
+
+  test("estaAtiva deve retornar false quando a conta nao esta ativa", () => {
+    // Arrange
+    const conta = new ContaBancaria({ ...criarContaBase(), status: "bloqueada" });
+
+    // Act
+    const ativa = conta.estaAtiva();
+
+    // Assert
+    expect(ativa).toBe(false);
+  });
+
+  test("deve permitir sacar exatamente o saldo disponivel (saldo + limite)", () => {
+    // Arrange
+    const conta = new ContaBancaria(criarContaBase());
+
+    // Act
+    const saque = conta.sacar(150);
+
+    // Assert
+    expect(saque).toBe(true);
+    expect(conta.obterSaldo()).toBe(-50);
+  });
+
+  test("podeSacar deve respeitar os limites de valor zero, negativo e exato", () => {
+    // Arrange
+    const conta = new ContaBancaria(criarContaBase());
+
+    // Act
+    const valorZero = conta.podeSacar(0);
+    const valorNegativo = conta.podeSacar(-10);
+    const valorExato = conta.podeSacar(150);
+
+    // Assert
+    expect(valorZero).toBe(false);
+    expect(valorNegativo).toBe(false);
+    expect(valorExato).toBe(true);
+  });
+
+  test("ajustarLimite deve aceitar limite zero", () => {
+    // Arrange
+    const conta = new ContaBancaria(criarContaBase());
+
+    // Act
+    const resultado = conta.ajustarLimite(0);
+
+    // Assert
+    expect(resultado).toBe(true);
+    expect(conta.obterLimite()).toBe(0);
+  });
+
+  test("saldoNegativo deve retornar false para saldo positivo e para saldo zero", () => {
+    // Arrange
+    const contaPositiva = new ContaBancaria(criarContaBase());
+    const contaZerada = new ContaBancaria({ ...criarContaBase(), saldo: 0 });
+
+    // Act
+    const positivo = contaPositiva.saldoNegativo();
+    const zerado = contaZerada.saldoNegativo();
+
+    // Assert
+    expect(positivo).toBe(false);
+    expect(zerado).toBe(false);
+  });
+
+  test("transferir nao deve sacar quando podeSacar retorna false", () => {
+    // Arrange
+    const origem = new ContaBancaria(criarContaBase());
+    const destino = { depositar: jest.fn() };
+    jest.spyOn(origem, "podeSacar").mockReturnValue(false);
+    const sacar = jest.spyOn(origem, "sacar");
+
+    // Act
+    const sucesso = origem.transferir(50, destino);
+
+    // Assert
+    expect(sucesso).toBe(false);
+    expect(sacar).not.toHaveBeenCalled();
+    expect(destino.depositar).not.toHaveBeenCalled();
+    expect(origem.obterSaldo()).toBe(100);
+  });
+
+  test("transferir deve falhar quando o saque nao for concluido", () => {
+    // Arrange
+    const origem = new ContaBancaria(criarContaBase());
+    const destino = { depositar: jest.fn() };
+    jest.spyOn(origem, "sacar").mockReturnValue(false);
+
+    // Act
+    const sucesso = origem.transferir(50, destino);
+
+    // Assert
+    expect(sucesso).toBe(false);
+    expect(destino.depositar).not.toHaveBeenCalled();
+  });
+
+  test("validarConta deve reprovar conta sem titular, com saldo invalido ou limite negativo", () => {
+    // Arrange
+    const semTitular = new ContaBancaria({ ...criarContaBase(), titular: "" });
+    const saldoTexto = new ContaBancaria({ ...criarContaBase(), saldo: "100" });
+    const limiteNegativo = new ContaBancaria({ ...criarContaBase(), limite: -1 });
+
+    // Act
+    const resultadoSemTitular = semTitular.validarConta();
+    const resultadoSaldoTexto = saldoTexto.validarConta();
+    const resultadoLimiteNegativo = limiteNegativo.validarConta();
+
+    // Assert
+    expect(resultadoSemTitular).toBe(false);
+    expect(resultadoSaldoTexto).toBe(false);
+    expect(resultadoLimiteNegativo).toBe(false);
+  });
+
+  test("validarConta deve aceitar limite zero e os status bloqueada e encerrada", () => {
+    // Arrange
+    const limiteZero = new ContaBancaria({ ...criarContaBase(), limite: 0 });
+    const bloqueada = new ContaBancaria({ ...criarContaBase(), status: "bloqueada" });
+    const encerrada = new ContaBancaria({ ...criarContaBase(), status: "encerrada" });
+
+    // Act
+    const resultadoLimiteZero = limiteZero.validarConta();
+    const resultadoBloqueada = bloqueada.validarConta();
+    const resultadoEncerrada = encerrada.validarConta();
+
+    // Assert
+    expect(resultadoLimiteZero).toBe(true);
+    expect(resultadoBloqueada).toBe(true);
+    expect(resultadoEncerrada).toBe(true);
+  });
 });

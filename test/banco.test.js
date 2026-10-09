@@ -105,4 +105,24 @@ describe("banco", () => {
     // Assert
     expect(totalDepositado).toBe(30);
   });
+
+  test("deve iniciar com historico vazio e saldo inicial zero", () => {
+    // Arrange & Act
+    const conta = new Banco("Conta A");
+
+    // Assert
+    expect(conta.obterHistorico()).toEqual([]);
+    expect(conta.obterSaldo()).toBe(0);
+  });
+
+  test("deve permitir sacar exatamente o saldo total", () => {
+    // Arrange
+    const conta = new Banco("Conta A", 100);
+
+    // Act
+    const saldo = conta.sacar(100);
+
+    // Assert
+    expect(saldo).toBe(0);
+  });
 });
