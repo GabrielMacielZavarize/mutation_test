@@ -1,0 +1,226 @@
+22:21:14 (1205) INFO ProjectReader Found 12 of 36 file(s) to be mutated.
+22:21:15 (1205) INFO Instrumenter Instrumented 12 source file(s) with 629 mutant(s)
+22:21:15 (1205) INFO ConcurrencyTokenProvider Creating 4 test runner process(es).
+22:21:15 (1205) INFO BroadcastReporter Detected that current console does not support the "progress" reporter, downgrading to "progress-append-only" reporter
+22:21:16 (1205) INFO DryRunExecutor Starting initial test run (jest test runner with "perTest" coverage analysis). This may take a while.
+22:21:17 (1205) INFO DryRunExecutor Initial test run succeeded. Ran 135 tests in 1 second (net 125 ms, overhead 1234 ms).
+Mutation testing 48% (elapsed: <1m, remaining: <1m) 333/629 tested (3 survived, 2 timed out)
+
+All tests
+  anagram.test.js
+    ✓ anagram deve retornar true para palavras anagramas ignorando maiusculas e pontuacao [line 4] (killed 9)
+    ✓ anagram deve retornar false para palavras que nao sao anagramas [line 16] (killed 2)
+  banco.test.js
+    ✓ banco deve depositar e registrar transacao [line 4] (killed 6)
+    ✓ banco deve sacar com saldo suficiente [line 16] (killed 6)
+    ✓ banco deve lancar erro ao sacar com saldo insuficiente [line 28] (killed 3)
+    ✓ banco deve transferir valor para conta de destino [line 39] (killed 6)
+    ✓ banco deve definir e validar limite de saque [line 57] (killed 9)
+    ✓ banco deve aplicar juros e registrar no historico [line 71] (killed 6)
+    ✓ banco deve pagar conta e registrar pagamento [line 83] (killed 4)
+    ✓ banco deve retornar total depositado somando apenas depositos [line 95] (killed 9)
+    ✓ banco deve iniciar com historico vazio e saldo inicial zero [line 109] (killed 1)
+    ✓ banco deve permitir sacar exatamente o saldo total [line 118] (killed 1)
+  calculator.test.js
+    ✓ Somar dois valores válidos [line 3] (killed 3)
+    ✓ Diminuir dois valores válidos [line 7] (killed 2)
+    ✓ Multiplicar dois valores válidos [line 11] (killed 2)
+    ✓ Dividir dois valores válidos [line 15] (killed 2)
+  carro.test.js
+    ✓ carro deve criar carro com kilometragem inicial 0 [line 4] (killed 1)
+    ✓ carro deve somar kilometragem ao dirigir distancia positiva [line 17] (killed 5)
+    ✓ carro nao deve alterar kilometragem ao dirigir distancia zero ou negativa [line 28] (killed 1)
+    ✓ carro deve retornar informacoes formatadas do carro [line 40] (killed 2)
+  cnh.test.js
+    ✓ cnh deve retornar true para idade igual ou maior que 18 [line 4] (killed 5)
+    ✓ cnh deve retornar false para idade menor que 18 [line 15] (killed 1)
+  contaBancaria.test.js
+    ✓ conta bancaria deve retornar dados basicos da conta [line 13] (killed 9)
+    ✓ conta bancaria deve depositar com valor valido e rejeitar valor invalido [line 32] (killed 8)
+    ✓ conta bancaria deve sacar quando ha saldo disponivel e rejeitar cenarios invalidos [line 46] (killed 13)
+    ✓ conta bancaria deve alterar titular e controlar bloqueio/ativacao [line 62] (killed 22)
+    ✓ conta bancaria deve encerrar conta somente quando saldo for zero [line 84] (killed 7)
+    ✓ conta bancaria deve avaliar possibilidade de saque e saldo negativo [line 99] (killed 11)
+    ✓ conta bancaria deve aplicar tarifa, ajustar limite e calcular saldo disponivel [line 115] (killed 16)
+    ✓ conta bancaria deve transferir para conta destino quando pode sacar [line 134] (killed 7)
+    ✓ conta bancaria deve falhar transferencia quando saque nao e permitido [line 148] (killed 1)
+    ✓ conta bancaria deve gerar resumo da conta [line 161] (killed 2)
+    ✓ conta bancaria deve validar conta para cenarios valido e invalidos [line 178] (killed 20)
+    ✓ conta bancaria deve resetar conta para estado inicial padrao [line 195] (killed 2)
+    ✓ conta bancaria estaAtiva deve retornar false quando a conta nao esta ativa [line 213] (killed 1)
+    ✓ conta bancaria deve permitir sacar exatamente o saldo disponivel (saldo + limite) [line 224] (killed 1)
+    ✓ conta bancaria podeSacar deve respeitar os limites de valor zero, negativo e exato [line 236] (killed 3)
+    ✓ conta bancaria ajustarLimite deve aceitar limite zero [line 251] (killed 1)
+    ✓ conta bancaria saldoNegativo deve retornar false para saldo positivo e para saldo zero [line 263] (killed 2)
+    ✓ conta bancaria transferir nao deve sacar quando podeSacar retorna false [line 277] (killed 1)
+    ✓ conta bancaria transferir deve falhar quando o saque nao for concluido [line 294] (killed 2)
+    ✓ conta bancaria validarConta deve reprovar conta sem titular, com saldo invalido ou limite negativo [line 308] (killed 6)
+    ✓ conta bancaria validarConta deve aceitar limite zero e os status bloqueada e encerrada [line 325] (killed 3)
+  lista.test.js
+    ✓ lista de compras deve adicionar item na lista [line 4] (killed 5)
+    ✓ lista de compras deve remover item existente da lista [line 15] (killed 4)
+    ✓ lista de compras deve lancar erro ao tentar remover item inexistente [line 28] (killed 4)
+  pessoa.test.js
+    ✓ Testes da classe Pessoa Deve criar uma pessoa com o nome e idade corretos [line 12] (killed 1)
+    ✓ Testes da classe Pessoa Deve apresentar a pessoa corretamente [line 17] (killed 2)
+    ✓ Testes da classe Pessoa Deve atualizar a idade da pessoa corretamente [line 22] (killed 1)
+    ~ Testes da classe Pessoa Deve retornar a apresentação atualizada após mudança de idade [line 27] (covered 4)
+  Streaming.test.js
+    ✓ Streaming obterSessaoAtiva (Singleton) deve retornar sempre a mesma referencia de sessao [line 15] (killed 7)
+    ✓ Streaming criarConteudo (Factory Method) deve criar um filme corretamente [line 30] (killed 5)
+    ✓ Streaming criarConteudo (Factory Method) deve criar uma serie corretamente [line 46] (killed 4)
+    ✓ Streaming criarConteudo (Factory Method) deve criar um podcast corretamente [line 58] (killed 4)
+    ✓ Streaming criarConteudo (Factory Method) deve lancar erro para tipo desconhecido [line 74] (killed 2)
+    ✓ Streaming criarFamiliaTema (Abstract Factory) deve criar player e menu com o mesmo tema [line 86] (killed 10)
+    ✓ Streaming criarFamiliaTema (Abstract Factory) deve aceitar os temas claro e contraste [line 100] (killed 2)
+    ✓ Streaming criarFamiliaTema (Abstract Factory) deve lancar erro para tema invalido [line 114] (killed 3)
+    ✓ Streaming construirResumoSessao (Builder) deve construir resumo com valores padrao quando config e vazia [line 126] (killed 6)
+    ✓ Streaming construirResumoSessao (Builder) deve construir resumo completo com conteudos e pausas [line 134] (killed 5)
+    ✓ Streaming clonarPlaylist (Prototype) deve clonar profundamente sem manter referencia com a original [line 153] (killed 4)
+    ✓ Streaming clonarPlaylist (Prototype) deve lancar erro quando playlist e invalida [line 167] (killed 4)
+    ✓ Streaming adaptarConteudoLegado (Adapter) deve mapear todos os campos do conteudo legado [line 183] (killed 9)
+    ✓ Streaming adaptarConteudoLegado (Adapter) deve usar defaults quando campos opcionais estao ausentes [line 203] (killed 1)
+    ✓ Streaming adaptarConteudoLegado (Adapter) deve lancar erro quando nome_do_arquivo esta ausente [line 215] (killed 4)
+    ✓ Streaming calcularDuracaoTotal (Composite) deve somar duracao de uma playlist simples com faixas [line 227] (killed 8)
+    ✓ Streaming calcularDuracaoTotal (Composite) deve somar duracao de playlist composta com sub-playlists aninhadas [line 240] (killed 4)
+    ✓ Streaming calcularDuracaoTotal (Composite) deve retornar 0 para playlist vazia ou nula [line 256] (killed 2)
+    ✓ Streaming decorarTitulo (Decorator) deve retornar o titulo original quando nao ha decoradores [line 268] (killed 2)
+    ✓ Streaming decorarTitulo (Decorator) deve aplicar um unico decorador [line 279] (killed 1)
+    ~ Streaming decorarTitulo (Decorator) deve aplicar varios decoradores em ordem [line 291] (covered 5)
+    ✓ Streaming reproduzirConteudo (Facade) deve reproduzir conteudo quando assinatura esta ativa [line 309] (killed 14)
+    ✓ Streaming reproduzirConteudo (Facade) deve lancar erro quando assinatura esta inativa [line 328] (killed 5)
+    ✓ Streaming obterIconeCategoria (Flyweight) deve retornar a mesma referencia para a mesma categoria [line 340] (killed 2)
+    ✓ Streaming obterIconeCategoria (Flyweight) deve criar icones diferentes para categorias diferentes [line 352] (killed 6)
+    ✓ Streaming acessarConteudoPremium (Proxy) deve liberar acesso para usuario com plano premium [line 365] (killed 9)
+    ✓ Streaming acessarConteudoPremium (Proxy) deve negar acesso para usuario sem plano premium [line 376] (killed 3)
+    ✓ Streaming acessarConteudoPremium (Proxy) deve lancar erro para usuario invalido ou nulo [line 386] (killed 4)
+    ✓ Streaming moderarComentario (Chain of Responsibility) deve retornar a decisao do primeiro handler que decidir [line 402] (killed 6)
+    ✓ Streaming moderarComentario (Chain of Responsibility) deve aprovar por padrao quando nenhum handler decide [line 418] (killed 4)
+    ✓ Streaming moderarComentario (Chain of Responsibility) deve aprovar quando a lista de handlers nao e informada [line 429] (killed 1)
+    ✓ Streaming moderarComentario (Chain of Responsibility) deve retornar decisao tomada no meio da cadeia [line 437] (killed 1)
+    ✓ Streaming executarComando (Command) deve executar o comando e retornar seu resultado [line 457] (killed 5)
+    ✓ Streaming executarComando (Command) deve lancar erro para comando invalido [line 469] (killed 5)
+    ✓ Streaming criarIteradorHistorico (Iterator) deve percorrer todo o historico [line 484] (killed 9)
+    ~ Streaming criarIteradorHistorico (Iterator) deve indicar que nao ha proximo item em historico vazio [line 499] (covered 10)
+    ✓ Streaming criarIteradorHistorico (Iterator) deve usar historico vazio quando nenhum historico e informado [line 507] (killed 5)
+    ~ Streaming criarIteradorHistorico (Iterator) deve lancar erro ao chamar proximo alem do fim [line 518] (covered 14)
+    ✓ Streaming mediarNotificacaoEntrePerfis (Mediator) deve enviar mensagem para todos os perfis exceto o remetente [line 531] (killed 8)
+    ~ Streaming mediarNotificacaoEntrePerfis (Mediator) deve retornar lista vazia quando nao ha perfis [line 549] (covered 7)
+    ✓ Streaming mediarNotificacaoEntrePerfis (Mediator) deve retornar lista vazia quando a lista de perfis nao e informada [line 561] (killed 1)
+    ✓ Streaming salvarProgresso / restaurarUltimoProgresso (Memento) deve salvar progressos e restaurar na ordem inversa [line 571] (killed 6)
+    ✓ Streaming salvarProgresso / restaurarUltimoProgresso (Memento) deve lancar erro ao restaurar sem progresso salvo [line 589] (killed 3)
+    ✓ Streaming inscreverPerfil / notificarNovosEpisodios (Observer) deve notificar todos os perfis inscritos com a serie lancada [line 598] (killed 5)
+    ~ Streaming inscreverPerfil / notificarNovosEpisodios (Observer) deve retornar 0 quando nao ha perfis inscritos [line 615] (covered 5)
+    ✓ Streaming transicionarEstado (State) deve transicionar corretamente entre estados validos [line 627] (killed 12)
+    ✓ Streaming transicionarEstado (State) deve lancar erro para transicao invalida [line 646] (killed 3)
+    ✓ Streaming transicionarEstado (State) deve lancar erro de transicao quando o estado atual nao existe [line 653] (killed 1)
+    ✓ Streaming ordenarCatalogo (Strategy) deve ordenar por popularidade quando essa estrategia e usada [line 668] (killed 6)
+    ~ Streaming ordenarCatalogo (Strategy) deve ordenar por titulo quando essa estrategia e usada [line 683] (covered 10)
+    ✓ Streaming ordenarCatalogo (Strategy) deve lancar erro quando estrategia nao e uma funcao [line 698] (killed 3)
+    ~ Streaming ordenarCatalogo (Strategy) nao deve alterar o array original (imutabilidade) [line 705] (covered 10)
+    ✓ Streaming executarFluxoRecomendacao (Template Method) deve executar as etapas coletar, filtrar e ordenar nessa ordem [line 719] (killed 1)
+    ~ Streaming métodos auxiliares verificarAssinatura deve lancar erro quando usuario e nulo ou sem assinatura [line 753] (covered 11)
+    ✓ Streaming métodos auxiliares buscarConteudoPorId deve retornar conteudo generico com o id informado [line 763] (killed 1)
+    ✓ Streaming métodos auxiliares registrarHistorico deve adicionar o id do conteudo ao historico do usuario [line 771] (killed 2)
+  textoUtils.test.js
+    ✓ TextoUtils inverter deve inverter a string [line 10] (killed 4)
+    ✓ TextoUtils ehPalindromo deve identificar palíndromos corretamente [line 14] (killed 10)
+    ✓ TextoUtils capitalizar deve deixar a primeira letra de cada palavra maiúscula [line 20] (killed 10)
+    ✓ TextoUtils capitalizar deve manter espaços duplos sem quebrar [line 24] (killed 1)
+    ✓ TextoUtils contarOcorrencias deve contar substrings corretamente [line 28] (killed 4)
+    ✓ TextoUtils contarOcorrencias deve retornar 0 quando a substring é vazia [line 33] (killed 1)
+    ✓ TextoUtils removerEspacosExtras deve limpar espaços extras [line 37] (killed 5)
+    ✓ TextoUtils paraSlug deve converter texto em slug [line 41] (killed 10)
+    ✓ TextoUtils paraSlug deve remover espaços das pontas e juntar espaços repetidos [line 45] (killed 2)
+    ✓ TextoUtils truncar deve truncar textos longos [line 49] (killed 8)
+    ✓ TextoUtils truncar deve manter o texto quando o tamanho é exatamente igual [line 54] (killed 1)
+    ✓ TextoUtils truncar deve aceitar tamanho zero [line 58] (killed 1)
+    ✓ TextoUtils truncar deve lançar erro para tamanho negativo [line 62] (killed 3)
+    ✓ TextoUtils contarPalavras deve contar as palavras corretamente [line 68] (killed 2)
+    ✓ TextoUtils contarPalavras deve retornar 0 para texto vazio ou só com espaços [line 72] (killed 1)
+    ✓ TextoUtils somenteLetras deve validar strings só com letras [line 77] (killed 4)
+    ✓ TextoUtils somenteLetras deve recusar texto que começa com números [line 82] (killed 1)
+    ✓ TextoUtils substituirTudo deve substituir todas as ocorrências [line 86] (killed 3)
+    ✓ TextoUtils substituirTudo deve lançar erro se alvo for vazio [line 92] (killed 3)
+  userService.test.js
+    ✓ user service deve retornar nome quando usuario existe [line 4] (killed 4)
+    ✓ user service deve lancar erro quando usuario nao existe [line 19] (killed 3)
+  utilitarios.test.js
+    ✓ utilitarios deve executar operacoes com strings [line 4] (killed 26)
+    ✓ utilitarios deve executar operacoes matematicas e validacoes [line 31] (killed 24)
+    ✓ utilitarios deve executar operacoes de arrays e objetos [line 58] (killed 23)
+    ✓ utilitarios deve gerar numero aleatorio dentro do limite [line 90] (killed 1)
+    ✓ utilitarios deve usar Math.random multiplicado pelo limite [line 102] (killed 1)
+    ✓ utilitarios ehNumero deve recusar valores que nao sao do tipo number [line 117] (killed 1)
+    ✓ utilitarios ehPalindromo deve retornar false para palavras que nao sao palindromos [line 130] (killed 5)
+    ✓ utilitarios ehPalindromo deve ignorar caracteres fora de a-z e 0-9 como o ß [line 143] (killed 1)
+
+[Survived] MethodExpression
+src/anagram.js:6:10
+-     return str.replace(/[^\w]/g, "").toLowerCase().split("").sort().join("");
++     return str.replace(/[^\w]/g, "").toUpperCase().split("").sort().join("");
+Tests ran:
+    anagram deve retornar true para palavras anagramas ignorando maiusculas e pontuacao
+    anagram deve retornar false para palavras que nao sao anagramas
+
+
+[Survived] StringLiteral
+src/anagram.js:6:72
+-     return str.replace(/[^\w]/g, "").toLowerCase().split("").sort().join("");
++     return str.replace(/[^\w]/g, "").toLowerCase().split("").sort().join("Stryker was here!");
+Tests ran:
+    anagram deve retornar true para palavras anagramas ignorando maiusculas e pontuacao
+    anagram deve retornar false para palavras que nao sao anagramas
+
+
+[Survived] EqualityOperator
+src/carro.js:10:13
+-           if (distancia > 0) {
++           if (distancia >= 0) {
+Tests ran:
+    carro deve somar kilometragem ao dirigir distancia positiva
+    carro nao deve alterar kilometragem ao dirigir distancia zero ou negativa
+    carro deve retornar informacoes formatadas do carro
+
+
+[Survived] Regex
+src/textoUtils.js:58:41
+-       const palavras = texto.trim().split(/\s+/).filter(Boolean);
++       const palavras = texto.trim().split(/\s/).filter(Boolean);
+Tests ran:
+    TextoUtils contarPalavras deve contar as palavras corretamente
+    TextoUtils contarPalavras deve retornar 0 para texto vazio ou só com espaços
+
+
+[Survived] MethodExpression
+src/textoUtils.js:58:22
+-       const palavras = texto.trim().split(/\s+/).filter(Boolean);
++       const palavras = texto.split(/\s+/).filter(Boolean);
+Tests ran:
+    TextoUtils contarPalavras deve contar as palavras corretamente
+    TextoUtils contarPalavras deve retornar 0 para texto vazio ou só com espaços
+
+
+Ran 2.32 tests per mutant on average.
+------------------|------------------|----------|-----------|------------|----------|----------|
+                  | % Mutation score |          |           |            |          |          |
+File              |  total | covered | # killed | # timeout | # survived | # no cov | # errors |
+------------------|--------|---------|----------|-----------|------------|----------|----------|
+All files         |  99.21 |   99.21 |      622 |         2 |          5 |        0 |        0 |
+ anagram.js       |  84.62 |   84.62 |       11 |         0 |          2 |        0 |        0 |
+ banco.js         | 100.00 |  100.00 |       51 |         0 |          0 |        0 |        0 |
+ calculator.js    | 100.00 |  100.00 |        9 |         0 |          0 |        0 |        0 |
+ carro.js         |  90.00 |   90.00 |        9 |         0 |          1 |        0 |        0 |
+ cnh.js           | 100.00 |  100.00 |        6 |         0 |          0 |        0 |        0 |
+ contaBancaria.js | 100.00 |  100.00 |      138 |         0 |          0 |        0 |        0 |
+ lista.js         | 100.00 |  100.00 |       13 |         0 |          0 |        0 |        0 |
+ pessoa.js        | 100.00 |  100.00 |        4 |         0 |          0 |        0 |        0 |
+ Streaming.js     | 100.00 |  100.00 |      218 |         2 |          0 |        0 |        0 |
+ textoUtils.js    |  97.37 |   97.37 |       74 |         0 |          2 |        0 |        0 |
+ userService.js   | 100.00 |  100.00 |        7 |         0 |          0 |        0 |        0 |
+ utilitarios.js   | 100.00 |  100.00 |       82 |         0 |          0 |        0 |        0 |
+------------------|--------|---------|----------|-----------|------------|----------|----------|
+22:21:34 (1205) INFO MutationTestReportHelper Final mutation score of 99.21 is greater than or equal to break threshold 70
+22:21:34 (1205) INFO JsonReporter Your report can be found at: file:///home/user/mutation_test/reports/mutation/mutation.json
+22:21:34 (1205) INFO HtmlReporter Your report can be found at: file:///home/user/mutation_test/reports/mutation/mutation.html
+22:21:34 (1205) INFO MutationTestExecutor Done in 19 seconds.
