@@ -7,8 +7,15 @@
     "enableFindRelatedTests": true
   },
   "coverageAnalysis": "perTest",
-  "mutate": ["src/**/*.js"],
-  "reporters": ["html", "clear-text", "progress", "json"],
+  "mutate": [
+    "src/**/*.js"
+  ],
+  "reporters": [
+    "html",
+    "clear-text",
+    "progress",
+    "json"
+  ],
   "htmlReporter": {
     "fileName": "reports/mutation/mutation.html"
   },
@@ -16,9 +23,9 @@
     "fileName": "reports/mutation/mutation.json"
   },
   "thresholds": {
-    "high": 90,
-    "low": 75,
-    "break": 70
+    "high": 95,
+    "low": 85,
+    "break": 90
   },
   "tempDirName": ".stryker-tmp"
 }

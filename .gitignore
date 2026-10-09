@@ -13,3 +13,4 @@ jspm_packages/
 .env.test
 # Stryker
 .stryker-tmp/
+reports/mutation/

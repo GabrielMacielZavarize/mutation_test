@@ -2,11 +2,9 @@ name: Build and Tests
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
-  schedule:   
-    - cron: '0 12 * * *'
+    branches: [ main ]
 
 jobs:
   build:
@@ -19,18 +17,25 @@ jobs:
       with:
         node-version: 22
         cache: 'npm'
-    - run: npm install      
+    - run: npm ci
     - run: npm run coverage
 
-  sonarcloud:
-    name: Run SonarCloud
+  mutation:
+    name: Run Mutation Tests (Stryker)
     runs-on: ubuntu-latest
+    needs: build
     steps:
-      - uses: actions/checkout@v7.0.1
-        with:
-          fetch-depth: 0
-      - name: Official SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v8.2.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    - uses: actions/checkout@v7.0.1
+    - name: Use Node.js 22
+      uses: actions/setup-node@v7.0.0
+      with:
+        node-version: 22
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run mutation
+    - name: Upload Stryker report
+      if: always()
+      uses: actions/upload-artifact@v7.0.2
+      with:
+        name: stryker-report
+        path: reports/mutation/
